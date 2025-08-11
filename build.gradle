@@ -1,14 +1,50 @@
-// Top‑level build file
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.example.diaryapp'
+    compileSdk 34
+
+    namespace 'com.example.studentattendance'
+
+    defaultConfig {
+        applicationId "com.example.diaryapp"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    dependencies {
-        classpath "com.android.tools.build:gradle:8.3.0"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.10"
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
     }
 }
 
-allprojects { repositories { google(); mavenCentral() } }
-task clean(type: Delete) { delete rootProject.buildDir }
+kotlin {
+    jvmToolchain(17)
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.0-alpha13'
+    implementation 'androidx.recyclerview:recyclerview:1.4.0-alpha01'
+    implementation 'com.google.code.gson:gson:2.10.1'
+}
